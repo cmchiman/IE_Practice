@@ -1,8 +1,6 @@
 from blind_watermark import WaterMark
 import cv2
 import numpy as np
-import random
-from matplotlib import pyplot as plt
 
 # ========== 嵌入水印 ==========
 bwm1 = WaterMark(password_img=1, password_wm=1)
@@ -79,19 +77,7 @@ for attack_name, img in attacked_images.items():
 
     print(f"{attack_name}攻击后提取结果: {wm_extract}")
 
-# ========== 结果可视化 ==========
-plt.figure(figsize=(15, 10))
-plt.subplot(331), plt.imshow(cv2.cvtColor(cv2.imread('embedded.png'), cv2.COLOR_BGR2RGB))
-plt.title('含水印原图'), plt.axis('off')
 
-for i, (attack, img) in enumerate(attacked_images.items(), 2):
-    plt.subplot(3, 3, i)
-    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    plt.title(f'{attack}攻击'), plt.axis('off')
-
-plt.tight_layout()
-plt.savefig('attack_comparison.png')
-plt.show()
 
 # ========== 输出最终报告 ==========
 print("\n=== 鲁棒性测试最终报告 ===")
